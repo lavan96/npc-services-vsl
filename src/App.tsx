@@ -20,7 +20,7 @@ import {
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
+const naiduLogo = "assets/NPC_navbar_header-removebg-preview.png";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
