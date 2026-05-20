@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-black: #030407;
+  --color-brand-obsidian: #080b12;
+  --color-brand-navy: #0d1424;
+  --color-brand-navy-light: #16223b;
+  
+  --color-gold-1: #8a661c;
+  --color-gold-2: #dfbd69;
+  --color-gold-3: #fcf2bf;
+  --color-gold-4: #d8b456;
+  --color-gold-5: #6b4d0e;
+}
+
+body {
+  background-color: var(--color-brand-black);
+  color: #E2E8F0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hyper-Premium Metallic Foil Gradients */
+.text-gradient-gold {
+  background: linear-gradient(to right, var(--color-gold-1) 0%, var(--color-gold-2) 22%, var(--color-gold-3) 45%, var(--color-gold-4) 78%, var(--color-gold-5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback */
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-1) 0%, var(--color-gold-2) 25%, var(--color-gold-3) 50%, var(--color-gold-4) 75%, var(--color-gold-5) 100%);
+}
+
+.bg-gradient-gold-foil {
+  background: linear-gradient(to right, var(--color-gold-1) 0%, var(--color-gold-2) 22%, var(--color-gold-3) 45%, var(--color-gold-4) 78%, var(--color-gold-5) 100%);
+}
+
+.border-gradient-gold {
+  position: relative;
+}
+.border-gradient-gold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to right, var(--color-gold-1), var(--color-gold-3), var(--color-gold-5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Fluid UI Utilities */
+.glass-panel {
+  background: rgba(13, 20, 36, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.glow-gold {
+  box-shadow: 0 0 40px rgba(223, 189, 105, 0.15);
+}
+
+.glow-gold-intense {
+  box-shadow: 0 0 60px rgba(252, 242, 191, 0.3);
+}
+
+/* Keyframes for funnel performance */
+@keyframes shimmer {
+  0% { transform: translateX(-150%) skewX(-25deg); }
+  100% { transform: translateX(200%) skewX(-25deg); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(223, 189, 105, 0.2); }
+  50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(223, 189, 105, 0.5); }
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.bg-scanline::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(223,189,105,0.4), transparent);
+  animation: scanline 8s linear infinite;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Precision corners for an "engineered" look */
+.corner-brackets {
+  position: relative;
+}
+.corner-brackets::before, .corner-brackets::after {
+  content: ''; position: absolute; width: 12px; height: 12px; border: 1px solid rgba(223, 189, 105, 0.4); transition: width 0.3s, height 0.3s;
+}
+.corner-brackets::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.corner-brackets::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+.corner-brackets:hover::before, .corner-brackets:hover::after { width: 24px; height: 24px; border-color: rgba(252, 242, 191, 0.8); }
+
+/* Typography styling */
+.measure-tight {
+  max-width: 65ch;
+}
