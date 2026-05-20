@@ -24,7 +24,7 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const naiduLogo = "./assets/NPC_navbar_header-removebg-preview.png";
+const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
 
 // -------------------------------------------------------------
 // ANIMATION VARIANTS
