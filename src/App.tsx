@@ -20,10 +20,31 @@ import {
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-const naiduLogo = "assets/NPC_navbar_header-removebg-preview.png";
-
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
+
+function BrandLogo({ className }: { className: string }) {
+  const [logoError, setLogoError] = useState(false);
+
+  if (logoError) {
+    return (
+      <span className="font-serif text-2xl md:text-3xl font-bold tracking-widest text-white/90 whitespace-nowrap">
+        NPC<span className="text-[#dfbd69]">.</span>
+      </span>
+    );
+  }
+
+  return (
+    <img
+      src={naiduLogo}
+      alt="Naidu Property Consulting Services"
+      className={className}
+      onError={() => setLogoError(true)}
+    />
+  );
 }
 
 // -------------------------------------------------------------
@@ -125,7 +146,7 @@ function Header() {
     )}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-12">
         <div className="cursor-pointer select-none">
-          <img src={naiduLogo} alt="Naidu Property Consulting Services" className="h-16 md:h-20 lg:h-24 w-auto max-w-[90vw] object-contain" />
+          <BrandLogo className="h-16 md:h-20 lg:h-24 w-auto max-w-[90vw] object-contain" />
         </div>
         <AnimatePresence>
           {isScrolled && (
@@ -581,7 +602,7 @@ function FinalFooter() {
     <footer className="bg-brand-black text-slate-500 py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-10">
           <div>
-            <img src={naiduLogo} alt="Naidu Property Consulting Services" className="h-16 md:h-20 lg:h-24 w-auto max-w-[90vw] object-contain opacity-90" />
+            <BrandLogo className="h-16 md:h-20 lg:h-24 w-auto max-w-[90vw] object-contain opacity-90" />
           </div>
           <p className="text-base font-mono tracking-widest uppercase">© {new Date().getFullYear()} NPC Services. Secure & Confidential.</p>
           <div className="flex gap-10 text-sm font-mono uppercase tracking-widest">
