@@ -219,7 +219,7 @@ function Hero() {
           <div className="mt-6 flex items-center justify-center gap-4 text-[#dfbd69] font-mono text-xs uppercase tracking-[0.2em]">
             <span className="flex items-center gap-1"><Crosshair className="w-3 h-3"/> Strategic Overview</span>
             <span className="opacity-50">|</span>
-            <span>Main VSL</span>
+            <span>Watch the Video</span>
           </div>
         </motion.div>
 
