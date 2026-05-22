@@ -158,7 +158,22 @@ function Header() {
 function Hero() {
   const [videoFailed, setVideoFailed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+
+    const updateViewport = (event: MediaQueryList | MediaQueryListEvent) => {
+      setIsMobileViewport(event.matches);
+    };
+
+    updateViewport(mediaQuery);
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
 
   const togglePlayback = () => {
     if (!videoRef.current) return;
@@ -206,7 +221,7 @@ function Hero() {
             <video
               ref={videoRef}
               className="h-full w-full bg-black object-contain"
-              controls
+              controls={!isMobileViewport}
               playsInline
               preload="metadata"
               poster={mainVslPosterUrl}
