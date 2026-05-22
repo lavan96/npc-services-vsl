@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   CheckCircle, 
-  Play, 
   ShieldCheck, 
   Target, 
   TrendingUp, 
@@ -20,10 +19,13 @@ import {
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
+const mainVslVideoUrl = "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v1/main-vsl-1.mp4";
+const mainVslPosterUrl = "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/posters/main-vsl-1.jpg";
 
 // -------------------------------------------------------------
 // ANIMATION VARIANTS
@@ -123,9 +125,8 @@ function Header() {
       isScrolled ? "bg-brand-obsidian/90 backdrop-blur-xl border-b border-[#dfbd69]/10 py-5" : "bg-transparent py-8 md:py-12"
     )}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-12">
-        <div className="font-serif text-2xl font-bold tracking-widest text-white cursor-pointer select-none flex items-center gap-3">
-          <ShieldCheck className="w-6 h-6 text-[#dfbd69]" />
-          <span>NPC<span className="text-[#dfbd69]">.</span></span>
+        <div className="cursor-pointer select-none">
+          <img src={naiduLogo} alt="Naidu Property Consulting Services" className="h-[74px] md:h-[90px] lg:h-[106px] w-auto max-w-[90vw] object-contain" />
         </div>
         <AnimatePresence>
           {isScrolled && (
@@ -177,36 +178,38 @@ function Hero() {
         </motion.p>
 
         {/* Cinematic VSL Container */}
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="w-full max-w-5xl mx-auto relative group cursor-pointer mb-24 z-20">
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="w-full max-w-5xl mx-auto relative group mb-24 z-20">
           
           <div className="absolute -inset-1 bg-gradient-gold-foil rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
           
-          <div className="relative glass-panel rounded-2xl overflow-hidden aspect-video border-gradient-gold flex items-center justify-center corner-brackets group-hover:shadow-[0_0_80px_rgba(223,189,105,0.2)] transition-shadow duration-700 bg-brand-obsidian">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop')] opacity-30 bg-cover bg-center mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1.5s] ease-out"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-obsidian/60 to-brand-obsidian/20"></div>
-            
-            {/* Play Button */}
-            <div className="w-32 h-32 glass-panel rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-[#dfbd69]/10 group-hover:border-[#dfbd69]/50 transition-all duration-500 z-10 shadow-[0_0_40px_rgba(223,189,105,0.2)]">
-               <div className="w-full h-full absolute inset-0 rounded-full border border-[#fcf2bf] animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite] opacity-20"></div>
-               <Play className="w-14 h-14 text-[#fcf2bf] ml-2" fill="currentColor" />
-            </div>
-            
-            {/* Overlay UI */}
-            {/* Increased padding from px-3 py-1.5 to px-4 py-2 */}
-            <div className="absolute top-6 left-6 flex items-center gap-3 z-10">
+          <div className="relative glass-panel rounded-2xl overflow-hidden aspect-video border-gradient-gold corner-brackets group-hover:shadow-[0_0_80px_rgba(223,189,105,0.2)] transition-shadow duration-700 bg-brand-obsidian">
+            <div className="absolute inset-0 bg-brand-black/30"></div>
+            <video
+              className="relative z-[1] h-full w-full object-cover bg-brand-black"
+              controls
+              playsInline
+              preload="metadata"
+              poster={mainVslPosterUrl}
+            >
+              <source src={mainVslVideoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-brand-black/40 via-transparent to-brand-obsidian/20"></div>
+
+            <div className="pointer-events-none absolute top-6 left-6 flex items-center gap-3 z-[3]">
               <div className="flex items-center gap-2 bg-red-600/20 text-red-400 text-xs font-mono font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-sm border border-red-500/30 backdrop-blur-md">
                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
                 Executive Briefing
               </div>
             </div>
-            
-            <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end z-10">
+
+            <div className="pointer-events-none absolute bottom-8 left-8 right-8 flex justify-between items-end z-[3]">
               <div className="text-left">
                 <p className="text-white font-serif font-bold text-3xl drop-shadow-lg mb-3">The "Engineered Portfolio" Secret</p>
                 <div className="flex items-center gap-4 text-[#dfbd69] font-mono text-xs uppercase tracking-[0.2em]">
                   <span className="flex items-center gap-1"><Crosshair className="w-3 h-3"/> Strategic Overview</span>
                   <span className="opacity-50">|</span>
-                  <span>Length: 5:42</span>
+                  <span>Main VSL</span>
                 </div>
               </div>
             </div>
@@ -580,8 +583,8 @@ function FinalFooter() {
   return (
     <footer className="bg-brand-black text-slate-500 py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-10">
-          <div className="font-serif text-4xl font-bold tracking-widest text-white opacity-40">
-            NPC<span className="text-[#dfbd69]">.</span>
+          <div>
+            <img src={naiduLogo} alt="Naidu Property Consulting Services" className="h-[74px] md:h-[90px] lg:h-[106px] w-auto max-w-[90vw] object-contain opacity-90" />
           </div>
           <p className="text-base font-mono tracking-widest uppercase">© {new Date().getFullYear()} NPC Services. Secure & Confidential.</p>
           <div className="flex gap-10 text-sm font-mono uppercase tracking-widest">
