@@ -45,20 +45,25 @@ export default function VslVideo({
     setInitError(false);
 
     type HlsInstance = {
-  attachMedia: (video: HTMLVideoElement) => void;
-  loadSource: (src: string) => void;
-  on: (event: string, handler: (_event: unknown, data?: any) => void) => void;
-  destroy: () => void;
-};
+      attachMedia: (video: HTMLVideoElement) => void;
+      loadSource: (src: string) => void;
+      on: (event: string, handler: (_event: unknown, data?: any) => void) => void;
+      destroy: () => void;
+    };
 
     let hls: HlsInstance | null = null;
 
     const useFallback = () => {
       if (fallbackMp4Url) {
         video.src = fallbackMp4Url;
+        video.load();
       } else {
         setInitError(true);
       }
+    };
+
+    const onNativeHlsError = () => {
+      useFallback();
     };
 
     if (!hlsUrl) {
@@ -68,7 +73,12 @@ export default function VslVideo({
 
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = hlsUrl;
-      return;
+      video.load();
+      video.addEventListener("error", onNativeHlsError, { once: true });
+
+      return () => {
+        video.removeEventListener("error", onNativeHlsError);
+      };
     }
 
     if (window.Hls?.isSupported()) {
@@ -107,6 +117,7 @@ export default function VslVideo({
         className={className}
         controls
         playsInline
+        webkit-playsinline="true"
         preload="auto"
         poster={posterUrl}
         onPlay={onPlay}
