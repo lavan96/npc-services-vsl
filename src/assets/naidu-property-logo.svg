@@ -1,0 +1,8 @@
+<svg width="760" height="240" viewBox="0 0 760 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="760" height="240" fill="black"/>
+  <text x="36" y="145" fill="#C89B5E" font-family="Georgia, serif" font-size="120" font-weight="700">N</text>
+  <text x="170" y="132" fill="#D8B26A" font-family="Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="3">NAIDU PROPERTY</text>
+  <line x1="170" y1="165" x2="315" y2="165" stroke="#B68A4E" stroke-width="4"/>
+  <line x1="590" y1="165" x2="720" y2="165" stroke="#B68A4E" stroke-width="4"/>
+  <text x="333" y="176" text-anchor="middle" fill="#C89B5E" font-family="Arial, sans-serif" font-size="38" font-weight="600" letter-spacing="4">CONSULTING SERVICES</text>
+</svg>
