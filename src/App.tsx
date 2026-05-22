@@ -221,16 +221,13 @@ function Hero() {
             <video
               ref={videoRef}
               className="h-full w-full bg-black object-contain"
-              controls={!isMobileViewport}
+              controls
               playsInline
               preload="metadata"
               poster={mainVslPosterUrl}
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
               onError={() => setVideoFailed(true)}
-              onClick={() => {
-                if (isMobileViewport) togglePlayback();
-              }}
             >
               <source src={mainVslVideoUrl} type="video/mp4" />
               Your browser does not support the video tag.
