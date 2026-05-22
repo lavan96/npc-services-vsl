@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   CheckCircle, 
   ShieldCheck, 
@@ -14,7 +14,9 @@ import {
   ChevronRight,
   Fingerprint,
   Activity,
-  Crosshair
+  Crosshair,
+  Play,
+  Pause
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -25,7 +27,7 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
-const mainVslHlsUrl = import.meta.env.VITE_VSL_HLS_URL || "";
+const mainVslHlsUrl = import.meta.env.VITE_VSL_HLS_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v2/master.m3u8";
 const mainVslPosterUrl = import.meta.env.VITE_VSL_POSTER_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/posters/main-vsl-1.jpg";
 const mainVslFallbackMp4Url = import.meta.env.VITE_VSL_FALLBACK_MP4_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v1/main-vsl-1.mp4";
 const leadStrategistImage = "/lead-strategist.jpg";
@@ -198,9 +200,9 @@ function Hero() {
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-4 text-[#dfbd69] font-mono text-xs uppercase tracking-[0.2em]">
-            <span className="flex items-center gap-1"><Crosshair className="w-3 h-3"/> Strategic Overview</span>
+            <span className="flex items-center gap-1">Strategic Overview</span>
             <span className="opacity-50">|</span>
-            <span>Main VSL</span>
+            <span>Watch the Video</span>
           </div>
         </motion.div>
 
@@ -320,9 +322,10 @@ function Positioning() {
             "This is why clients come to us after trying it themselves — realizing how devastatingly easy it is to make costly mistakes without a rigid, mathematical blueprint guiding them."
           </p>
           <div className="mt-12 flex items-center gap-5">
-             <img src={leadStrategistImage} alt="Lead Strategist" className="w-14 h-14 rounded-full border border-[#dfbd69]/40 object-cover" />
+             <img src={leadStrategistImage} alt="Lead Strategist" className="w-24 h-24 rounded-full border border-[#dfbd69]/40 object-cover" />
              <div>
-               <p className="text-white font-bold text-base tracking-wide uppercase">Lead Strategist</p>
+               <p className="text-white font-bold text-base tracking-wide uppercase">Rugesh Naidu</p>
+               <p className="text-slate-300 font-semibold text-sm tracking-wide mt-1">Founder</p>
                <p className="text-slate-500 font-mono text-xs uppercase tracking-widest mt-1.5">NPC Services</p>
              </div>
           </div>
