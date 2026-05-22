@@ -228,6 +228,9 @@ function Hero() {
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
               onError={() => setVideoFailed(true)}
+              onClick={() => {
+                if (isMobileViewport) togglePlayback();
+              }}
             >
               <source src={mainVslVideoUrl} type="video/mp4" />
               Your browser does not support the video tag.
@@ -237,7 +240,7 @@ function Hero() {
               <button
                 type="button"
                 onClick={togglePlayback}
-                className="absolute left-1/2 top-1/2 z-[3] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#dfbd69]/50 bg-brand-black/70 p-5 text-[#fcf2bf] shadow-[0_0_24px_rgba(223,189,105,0.35)] backdrop-blur-md transition hover:scale-110 hover:bg-brand-black/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#dfbd69]"
+                className="pointer-events-none absolute left-1/2 top-1/2 z-[3] hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#dfbd69]/50 bg-brand-black/70 p-5 text-[#fcf2bf] opacity-0 shadow-[0_0_24px_rgba(223,189,105,0.35)] backdrop-blur-md transition group-hover:opacity-100 md:flex md:pointer-events-auto hover:scale-110 hover:bg-brand-black/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#dfbd69]"
                 aria-label={isPlaying ? "Pause video" : "Play video"}
               >
                 {isPlaying ? <Pause className="h-8 w-8" /> : <Play className="h-8 w-8 ml-0.5" fill="currentColor" />}
