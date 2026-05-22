@@ -223,7 +223,7 @@ function Hero() {
               className="h-full w-full bg-black object-contain"
               controls
               playsInline
-              preload="metadata"
+              preload="auto"
               poster={mainVslPosterUrl}
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
