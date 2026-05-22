@@ -263,8 +263,8 @@ function Hero() {
 
         {/* Action Area */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.8 }} className="flex flex-col items-center w-full max-w-2xl mx-auto space-y-6">
-          <Button variant="secondary" breather onClick={() => window.open(quizUrl, "_blank", "noopener,noreferrer")} className="w-full md:w-auto text-xl px-16 py-8 rounded-xl shadow-[0_0_40px_rgba(223,189,105,0.2)]">
-            Take The 4-Question Placement Quiz <ArrowRight className="w-6 h-6 ml-2" />
+          <Button variant="secondary" breather onClick={() => window.open(quizUrl, "_blank", "noopener,noreferrer")} className="w-full md:w-auto text-base sm:text-lg md:text-xl px-8 sm:px-12 md:px-16 py-6 sm:py-7 md:py-8 rounded-xl shadow-[0_0_40px_rgba(223,189,105,0.2)] tracking-normal sm:tracking-wide leading-tight">
+            Take The 4-Question<br className="sm:hidden" /> Placement Quiz <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2" />
           </Button>
           <div className="flex items-center gap-2 text-slate-400 text-xs font-mono uppercase tracking-[0.1em] pt-4">
             <Lock className="w-3 h-3" /> Step 1: Rapid 4-question quiz to see if you qualify.
