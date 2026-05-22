@@ -186,30 +186,32 @@ function Hero() {
         </motion.p>
 
         {/* Cinematic VSL Container */}
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="w-full max-w-5xl mx-auto relative group cursor-pointer mb-24 z-20">
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="w-full max-w-5xl mx-auto relative group mb-24 z-20">
           
           <div className="absolute -inset-1 bg-gradient-gold-foil rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
           
           <div className="relative glass-panel rounded-2xl overflow-hidden aspect-video border-gradient-gold corner-brackets group-hover:shadow-[0_0_80px_rgba(223,189,105,0.2)] transition-shadow duration-700 bg-brand-obsidian">
+            <div className="absolute inset-0 bg-brand-black/30"></div>
             <video
-              className="absolute inset-0 h-full w-full object-cover"
+              className="relative z-[1] h-full w-full object-cover bg-brand-black"
               controls
+              playsInline
               preload="metadata"
               poster={mainVslPosterUrl}
             >
               <source src={mainVslVideoUrl} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-black/40 via-transparent to-brand-obsidian/20"></div>
+            <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-brand-black/40 via-transparent to-brand-obsidian/20"></div>
 
-            <div className="pointer-events-none absolute top-6 left-6 flex items-center gap-3 z-10">
+            <div className="pointer-events-none absolute top-6 left-6 flex items-center gap-3 z-[3]">
               <div className="flex items-center gap-2 bg-red-600/20 text-red-400 text-xs font-mono font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-sm border border-red-500/30 backdrop-blur-md">
                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
                 Executive Briefing
               </div>
             </div>
 
-            <div className="pointer-events-none absolute bottom-8 left-8 right-8 flex justify-between items-end z-10">
+            <div className="pointer-events-none absolute bottom-8 left-8 right-8 flex justify-between items-end z-[3]">
               <div className="text-left">
                 <p className="text-white font-serif font-bold text-3xl drop-shadow-lg mb-3">The "Engineered Portfolio" Secret</p>
                 <div className="flex items-center gap-4 text-[#dfbd69] font-mono text-xs uppercase tracking-[0.2em]">
