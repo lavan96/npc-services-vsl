@@ -255,9 +255,9 @@ function Hero() {
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-4 text-[#dfbd69] font-mono text-xs uppercase tracking-[0.2em]">
-            <span className="flex items-center gap-1"><Crosshair className="w-3 h-3"/> Strategic Overview</span>
+            <span className="flex items-center gap-1"><Crosshair className="w-3 h-3"/>   Strategic Overview</span>
             <span className="opacity-50">|</span>
-            <span>Main VSL</span>
+            <span>Watch the Video</span>
           </div>
         </motion.div>
 
@@ -377,9 +377,10 @@ function Positioning() {
             "This is why clients come to us after trying it themselves — realizing how devastatingly easy it is to make costly mistakes without a rigid, mathematical blueprint guiding them."
           </p>
           <div className="mt-12 flex items-center gap-5">
-             <img src={leadStrategistImage} alt="Lead Strategist" className="w-14 h-14 rounded-full border border-[#dfbd69]/40 object-cover" />
+             <img src={leadStrategistImage} alt="Lead Strategist" className="w-24 h-24 rounded-full border border-[#dfbd69]/40 object-cover" />
              <div>
-               <p className="text-white font-bold text-base tracking-wide uppercase">Lead Strategist</p>
+               <p className="text-white font-bold text-base tracking-wide uppercase">Rugesh Naidu</p>
+               <p className="text-slate-300 font-semibold text-sm tracking-wide mt-1">Founder</p>
                <p className="text-slate-500 font-mono text-xs uppercase tracking-widest mt-1.5">NPC Services</p>
              </div>
           </div>
