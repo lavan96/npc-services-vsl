@@ -131,7 +131,7 @@ function Header() {
     )}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-12">
         <div className="cursor-pointer select-none">
-          <img src={naiduLogo} alt="Naidu Property Consulting Services" className="h-[74px] md:h-[90px] lg:h-[106px] w-auto max-w-[90vw] object-contain" />
+          <img src={naiduLogo} alt="Naidu Property Consulting Services" className="mx-auto h-[74px] md:h-[90px] lg:h-[106px] w-auto max-w-[90vw] object-contain" />
         </div>
         <AnimatePresence>
           {isScrolled && (
