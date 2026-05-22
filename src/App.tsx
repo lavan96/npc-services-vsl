@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   CheckCircle, 
-  Play, 
   ShieldCheck, 
   Target, 
   TrendingUp, 
@@ -25,8 +24,8 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
-const leadStrategistImage = "/lead-strategist.jpg";
-const ctaUrl = "https://crm.npcservices.com.au/quiz";
+const mainVslVideoUrl = "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v1/main-vsl-1.mp4";
+const mainVslPosterUrl = "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/posters/main-vsl-1.jpg";
 
 // -------------------------------------------------------------
 // ANIMATION VARIANTS
@@ -191,32 +190,32 @@ function Hero() {
           
           <div className="absolute -inset-1 bg-gradient-gold-foil rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
           
-          <div className="relative glass-panel rounded-2xl overflow-hidden aspect-video border-gradient-gold flex items-center justify-center corner-brackets group-hover:shadow-[0_0_80px_rgba(223,189,105,0.2)] transition-shadow duration-700 bg-brand-obsidian">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop')] opacity-30 bg-cover bg-center mix-blend-luminosity scale-[1.03] group-hover:scale-100 transition-transform duration-[1.5s] ease-out"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-obsidian/60 to-brand-obsidian/20"></div>
-            
-            {/* Play Button */}
-            <div className="w-32 h-32 glass-panel rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-[#dfbd69]/10 group-hover:border-[#dfbd69]/50 transition-all duration-500 z-10 shadow-[0_0_40px_rgba(223,189,105,0.2)]">
-               <div className="w-full h-full absolute inset-0 rounded-full border border-[#fcf2bf] animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite] opacity-20"></div>
-               <Play className="w-14 h-14 text-[#fcf2bf] ml-2" fill="currentColor" />
-            </div>
-            
-            {/* Overlay UI */}
-            {/* Increased padding from px-3 py-1.5 to px-4 py-2 */}
-            <div className="absolute top-6 left-6 flex items-center gap-3 z-10">
+          <div className="relative glass-panel rounded-2xl overflow-hidden aspect-video border-gradient-gold corner-brackets group-hover:shadow-[0_0_80px_rgba(223,189,105,0.2)] transition-shadow duration-700 bg-brand-obsidian">
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              controls
+              preload="metadata"
+              poster={mainVslPosterUrl}
+            >
+              <source src={mainVslVideoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-black/40 via-transparent to-brand-obsidian/20"></div>
+
+            <div className="pointer-events-none absolute top-6 left-6 flex items-center gap-3 z-10">
               <div className="flex items-center gap-2 bg-red-600/20 text-red-400 text-xs font-mono font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-sm border border-red-500/30 backdrop-blur-md">
                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
                 Executive Briefing
               </div>
             </div>
-            
-            <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end z-10">
+
+            <div className="pointer-events-none absolute bottom-8 left-8 right-8 flex justify-between items-end z-10">
               <div className="text-left">
                 <p className="text-white font-serif font-bold text-3xl drop-shadow-lg mb-3">The "Engineered Portfolio" Secret</p>
                 <div className="flex items-center gap-4 text-[#dfbd69] font-mono text-xs uppercase tracking-[0.2em]">
                   <span className="flex items-center gap-1"><Crosshair className="w-3 h-3"/> Strategic Overview</span>
                   <span className="opacity-50">|</span>
-                  <span>Length: 5:42</span>
+                  <span>Main VSL</span>
                 </div>
               </div>
             </div>
