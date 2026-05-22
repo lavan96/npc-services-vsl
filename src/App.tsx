@@ -25,6 +25,7 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
+const leadStrategistImage = "/lead-strategist.jpg";
 
 // -------------------------------------------------------------
 // ANIMATION VARIANTS
@@ -329,7 +330,13 @@ function Positioning() {
             "This is why clients come to us after trying it themselves — realizing how devastatingly easy it is to make costly mistakes without a rigid, mathematical blueprint guiding them."
           </p>
           <div className="mt-12 flex items-center gap-5">
-             <div className="w-14 h-14 rounded-full bg-[#dfbd69]/20 border border-[#dfbd69]/40"></div>
+             <div className="w-14 h-14 rounded-full bg-[#dfbd69]/20 border border-[#dfbd69]/40 overflow-hidden shrink-0">
+               <img
+                 src={leadStrategistImage}
+                 alt="Lead strategist"
+                 className="w-full h-full object-cover"
+               />
+             </div>
              <div>
                <p className="text-white font-bold text-base tracking-wide uppercase">Lead Strategist</p>
                <p className="text-slate-500 font-mono text-xs uppercase tracking-widest mt-1.5">NPC Services</p>
