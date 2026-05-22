@@ -21,13 +21,15 @@ import {
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import VslVideo from "./components/VslVideo";
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
-const mainVslVideoUrl = import.meta.env.VITE_VSL_VIDEO_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v1/main-vsl-1.mp4";
+const mainVslHlsUrl = import.meta.env.VITE_VSL_HLS_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v2/master.m3u8";
 const mainVslPosterUrl = import.meta.env.VITE_VSL_POSTER_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/posters/main-vsl-1.jpg";
+const mainVslFallbackMp4Url = import.meta.env.VITE_VSL_FALLBACK_MP4_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v1/main-vsl-1.mp4";
 const leadStrategistImage = "/lead-strategist.jpg";
 const quizUrl = "https://crm.npcservices.com.au/quiz";
 
@@ -156,35 +158,6 @@ function Header() {
 // -------------------------------------------------------------
 
 function Hero() {
-  const [videoFailed, setVideoFailed] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
-
-    const updateViewport = (event: MediaQueryList | MediaQueryListEvent) => {
-      setIsMobileViewport(event.matches);
-    };
-
-    updateViewport(mediaQuery);
-    mediaQuery.addEventListener("change", updateViewport);
-
-    return () => mediaQuery.removeEventListener("change", updateViewport);
-  }, []);
-
-  const togglePlayback = () => {
-    if (!videoRef.current) return;
-
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      return;
-    }
-
-    videoRef.current.pause();
-  };
 
   return (
     <section className="relative overflow-hidden bg-brand-obsidian min-h-screen flex items-center justify-center pt-40 pb-28 border-b border-[#dfbd69]/10 bg-scanline">
@@ -218,44 +191,16 @@ function Hero() {
           <div className="absolute -inset-1 bg-gradient-gold-foil rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
           
           <div className="relative glass-panel rounded-2xl overflow-hidden aspect-video border-gradient-gold corner-brackets transition-shadow duration-700 bg-brand-obsidian">
-            <video
-              ref={videoRef}
+            <VslVideo
               className="h-full w-full bg-black object-contain"
-              controls
-              playsInline
-              preload="auto"
-              poster={mainVslPosterUrl}
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-              onError={() => setVideoFailed(true)}
-            >
-              <source src={mainVslVideoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
-            {!videoFailed && (
-              <button
-                type="button"
-                onClick={togglePlayback}
-                className="pointer-events-none absolute left-1/2 top-1/2 z-[3] hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#dfbd69]/50 bg-brand-black/70 p-5 text-[#fcf2bf] opacity-0 shadow-[0_0_24px_rgba(223,189,105,0.35)] backdrop-blur-md transition group-hover:opacity-100 md:flex md:pointer-events-auto hover:scale-110 hover:bg-brand-black/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#dfbd69]"
-                aria-label={isPlaying ? "Pause video" : "Play video"}
-              >
-                {isPlaying ? <Pause className="h-8 w-8" /> : <Play className="h-8 w-8 ml-0.5" fill="currentColor" />}
-              </button>
-            )}
-
-            {videoFailed && (
-              <div className="absolute inset-0 z-[4] flex items-center justify-center bg-brand-black/80 p-6">
-                <div className="max-w-xl text-center">
-                  <p className="text-white font-serif text-2xl mb-3">Video unavailable in this browser session.</p>
-                  <a href={mainVslVideoUrl} target="_blank" rel="noreferrer" className="text-[#dfbd69] underline underline-offset-4">Open the video directly</a>
-                </div>
-              </div>
-            )}
+              hlsUrl={mainVslHlsUrl}
+              posterUrl={mainVslPosterUrl}
+              fallbackMp4Url={mainVslFallbackMp4Url}
+            />
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-4 text-[#dfbd69] font-mono text-xs uppercase tracking-[0.2em]">
-            <span className="flex items-center gap-1"><Crosshair className="w-3 h-3"/>   Strategic Overview</span>
+            <span className="flex items-center gap-1">Strategic Overview</span>
             <span className="opacity-50">|</span>
             <span>Watch the Video</span>
           </div>
