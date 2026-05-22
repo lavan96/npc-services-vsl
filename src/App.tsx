@@ -97,7 +97,11 @@ function InlineCTA({ title, subtitle, btnText }: { title: string, subtitle: stri
           <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white font-bold">{title}</h3>
         </div>
         <div className="relative z-10 w-full md:w-auto shrink-0 mt-6 md:mt-0">
-          <Button variant="secondary" className="w-full md:w-auto whitespace-nowrap shadow-[0_0_30px_rgba(223,189,105,0.2)]">
+          <Button
+            variant="secondary"
+            className="w-full md:w-auto whitespace-nowrap shadow-[0_0_30px_rgba(223,189,105,0.2)]"
+            onClick={() => window.open(ctaUrl, "_blank", "noopener,noreferrer")}
+          >
             {btnText} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
@@ -135,7 +139,11 @@ function Header() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
             >
-              <Button variant="secondary" className="px-8 py-3 text-xs tracking-widest hidden sm:flex shadow-[0_0_15px_rgba(223,189,105,0.2)]">
+              <Button
+                variant="secondary"
+                className="px-8 py-3 text-xs tracking-widest hidden sm:flex shadow-[0_0_15px_rgba(223,189,105,0.2)]"
+                onClick={() => window.open(ctaUrl, "_blank", "noopener,noreferrer")}
+              >
                 Take The Quiz
               </Button>
             </motion.div>
@@ -216,7 +224,12 @@ function Hero() {
 
         {/* Action Area */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.8 }} className="flex flex-col items-center w-full max-w-2xl mx-auto space-y-6">
-          <Button variant="secondary" breather className="w-full md:w-auto text-xl px-16 py-8 rounded-xl shadow-[0_0_40px_rgba(223,189,105,0.2)]">
+          <Button
+            variant="secondary"
+            breather
+            className="w-full md:w-auto text-xl px-16 py-8 rounded-xl shadow-[0_0_40px_rgba(223,189,105,0.2)]"
+            onClick={() => window.open(ctaUrl, "_blank", "noopener,noreferrer")}
+          >
             Take The 4-Question Placement Quiz <ArrowRight className="w-6 h-6 ml-2" />
           </Button>
           <div className="flex items-center gap-2 text-slate-400 text-xs font-mono uppercase tracking-[0.1em] pt-4">
@@ -330,9 +343,16 @@ function Positioning() {
             "This is why clients come to us after trying it themselves — realizing how devastatingly easy it is to make costly mistakes without a rigid, mathematical blueprint guiding them."
           </p>
           <div className="mt-12 flex items-center gap-5">
-             <div className="w-14 h-14 rounded-full bg-[#dfbd69]/20 border border-[#dfbd69]/40"></div>
+             <div className="w-20 h-20 rounded-full bg-[#dfbd69]/20 border border-[#dfbd69]/40 overflow-hidden shrink-0">
+               <img
+                 src={leadStrategistImage}
+                 alt="Rugesh Naidu"
+                 className="w-full h-full object-cover"
+               />
+             </div>
              <div>
-               <p className="text-white font-bold text-base tracking-wide uppercase">Lead Strategist</p>
+               <p className="text-white font-bold text-base tracking-wide uppercase">Founder</p>
+               <p className="text-slate-300 font-semibold text-sm tracking-wide mt-1">Rugesh Naidu</p>
                <p className="text-slate-500 font-mono text-xs uppercase tracking-widest mt-1.5">NPC Services</p>
              </div>
           </div>
@@ -567,7 +587,12 @@ function AuthorityClosing() {
             This patented methodology is highly effective, but we can only guide a limited roster of new clients each month. We optimize exclusively for aggressive, structured results—not volume.
           </motion.p>
           <motion.div {...fadeUp}>
-            <Button variant="secondary" breather className="text-xl md:text-2xl px-16 py-8 rounded-2xl shadow-2xl">
+            <Button
+              variant="secondary"
+              breather
+              className="text-xl md:text-2xl px-16 py-8 rounded-2xl shadow-2xl"
+              onClick={() => window.open(ctaUrl, "_blank", "noopener,noreferrer")}
+            >
                Step 1: Take The 4-Question Quiz <ArrowRight className="ml-4 w-7 h-7" />
             </Button>
             <p className="mt-8 text-sm md:text-base text-[#dfbd69] font-mono tracking-widest uppercase font-bold">* Spaces for Discovery Calls are strictly limited.</p>
