@@ -20,7 +20,9 @@ declare global {
 
 type VslVideoProps = {
   hlsUrl?: string;
+  iosHlsUrl?: string;
   fallbackMp4Url?: string;
+  iosFallbackMp4Url?: string;
   posterUrl?: string;
   className?: string;
   onPlay?: () => void;
@@ -29,7 +31,9 @@ type VslVideoProps = {
 
 export default function VslVideo({
   hlsUrl,
+  iosHlsUrl,
   fallbackMp4Url,
+  iosFallbackMp4Url,
   posterUrl,
   className,
   onPlay,
@@ -53,9 +57,24 @@ export default function VslVideo({
 
     let hls: HlsInstance | null = null;
 
+    const isIOSDevice = () => {
+      const ua = window.navigator.userAgent || "";
+      const platform = window.navigator.platform || "";
+      const maxTouchPoints = window.navigator.maxTouchPoints || 0;
+
+      const isClassicIOS = /iPad|iPhone|iPod/.test(ua) || /iPad|iPhone|iPod/.test(platform);
+      const isModernIPadOS = platform === "MacIntel" && maxTouchPoints > 1;
+
+      return isClassicIOS || isModernIPadOS;
+    };
+
+    const isIOS = isIOSDevice();
+    const selectedHlsUrl = isIOS ? iosHlsUrl || hlsUrl : hlsUrl;
+    const selectedFallbackMp4Url = isIOS ? iosFallbackMp4Url || fallbackMp4Url : fallbackMp4Url;
+
     const useFallback = () => {
-      if (fallbackMp4Url) {
-        video.src = fallbackMp4Url;
+      if (selectedFallbackMp4Url) {
+        video.src = selectedFallbackMp4Url;
         video.load();
       } else {
         setInitError(true);
@@ -66,13 +85,13 @@ export default function VslVideo({
       useFallback();
     };
 
-    if (!hlsUrl) {
+    if (!selectedHlsUrl) {
       useFallback();
       return;
     }
 
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = hlsUrl;
+      video.src = selectedHlsUrl;
       video.load();
       video.addEventListener("error", onNativeHlsError, { once: true });
 
@@ -86,7 +105,7 @@ export default function VslVideo({
       hls = new HlsCtor();
       hls.attachMedia(video);
       hls.on(HlsCtor.Events.MEDIA_ATTACHED, () => {
-        hls?.loadSource(hlsUrl);
+        hls?.loadSource(selectedHlsUrl);
       });
       hls.on(HlsCtor.Events.ERROR, (_event, data) => {
         if (import.meta.env.DEV) {
@@ -108,7 +127,7 @@ export default function VslVideo({
         hls.destroy();
       }
     };
-  }, [hlsUrl, fallbackMp4Url]);
+  }, [hlsUrl, iosHlsUrl, fallbackMp4Url, iosFallbackMp4Url]);
 
   return (
     <>
@@ -123,7 +142,7 @@ export default function VslVideo({
         onPlay={onPlay}
         onPause={onPause}
       >
-        {fallbackMp4Url && <source src={fallbackMp4Url} type="video/mp4" />}
+        {(iosFallbackMp4Url || fallbackMp4Url) && <source src={iosFallbackMp4Url || fallbackMp4Url} type="video/mp4" />}
         Your browser does not support the video tag.
       </video>
 
@@ -131,8 +150,8 @@ export default function VslVideo({
         <div className="absolute inset-0 z-[4] flex items-center justify-center bg-brand-black/80 p-6">
           <div className="max-w-xl text-center">
             <p className="text-white font-serif text-2xl mb-3">Video unavailable in this browser session.</p>
-            {fallbackMp4Url && (
-              <a href={fallbackMp4Url} target="_blank" rel="noreferrer" className="text-[#dfbd69] underline underline-offset-4">
+            {(iosFallbackMp4Url || fallbackMp4Url) && (
+              <a href={iosFallbackMp4Url || fallbackMp4Url} target="_blank" rel="noreferrer" className="text-[#dfbd69] underline underline-offset-4">
                 Open the video directly
               </a>
             )}

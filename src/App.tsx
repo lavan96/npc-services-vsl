@@ -30,6 +30,8 @@ const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
 const mainVslHlsUrl = import.meta.env.VITE_VSL_HLS_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v2/master.m3u8";
 const mainVslPosterUrl = import.meta.env.VITE_VSL_POSTER_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/posters/main-vsl-1.jpg";
 const mainVslFallbackMp4Url = import.meta.env.VITE_VSL_FALLBACK_MP4_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v1/main-vsl-1.mp4";
+const mainVslIosHlsUrl = import.meta.env.VITE_VSL_IOS_HLS_URL || "";
+const mainVslIosFallbackMp4Url = import.meta.env.VITE_VSL_IOS_FALLBACK_MP4_URL || "";
 const leadStrategistImage = "/lead-strategist.jpg";
 const quizUrl = "https://crm.npcservices.com.au/quiz";
 
@@ -195,7 +197,9 @@ function Hero() {
               className="h-full w-full bg-black object-contain"
               hlsUrl={mainVslHlsUrl}
               posterUrl={mainVslPosterUrl}
+              iosHlsUrl={mainVslIosHlsUrl}
               fallbackMp4Url={mainVslFallbackMp4Url}
+              iosFallbackMp4Url={mainVslIosFallbackMp4Url}
             />
           </div>
 
