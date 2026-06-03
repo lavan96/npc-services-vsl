@@ -224,6 +224,8 @@ function Hero() {
   );
 }
 
+const showSocialProof = false;
+
 function SocialProof() {
   const logos = ['Forbes', 'Bloomberg', 'AFR', 'Property Investor'];
   
@@ -602,7 +604,7 @@ export default function App() {
 
       <main>
         <Hero />
-        <SocialProof />
+        {showSocialProof && <SocialProof />}
         <ProblemSection />
         
         <GradientDivider />
