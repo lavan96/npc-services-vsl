@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/NPC favicon.png" />
     <title>NPC Services | Property Portfolio Strategy</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
+
+    <!--
+      The VSL ladder is served from object storage on a different origin. Warming
+      DNS, TCP and TLS while the page is still parsing removes roughly a full
+      round trip from the time-to-first-frame, which is the metric that decides
+      whether a visitor waits out the opening seconds of the video.
+    -->
+    <link rel="preconnect" href="https://dduzbchuswwbefdunfct.supabase.co" crossorigin />
+    <link rel="dns-prefetch" href="https://dduzbchuswwbefdunfct.supabase.co" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

@@ -29,7 +29,12 @@ function cn(...inputs: ClassValue[]) {
 const naiduLogo = "/NPC_navbar_header-removebg-preview.png";
 const mainVslHlsUrl = import.meta.env.VITE_VSL_HLS_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v2/master.m3u8";
 const mainVslPosterUrl = import.meta.env.VITE_VSL_POSTER_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/posters/main-vsl-1.jpg";
-const mainVslFallbackMp4Url = import.meta.env.VITE_VSL_FALLBACK_MP4_URL || "https://dduzbchuswwbefdunfct.supabase.co/storage/v1/object/public/vsl-media/videos/main-vsl-v1/main-vsl-1.mp4";
+// Deliberately unset by default. The progressive fallback that used to live here
+// was the 6.3 GB near-lossless master (~83 Mbps), so any viewer who fell through
+// to it on a weak connection was guaranteed to stall. Point this at a single
+// ~1.5 Mbps 720p MP4 produced by scripts/encode-vsl.sh before enabling it.
+// See docs/VIDEO_STREAMING.md.
+const mainVslFallbackMp4Url = import.meta.env.VITE_VSL_FALLBACK_MP4_URL || "";
 const mainVslIosHlsUrl = import.meta.env.VITE_VSL_IOS_HLS_URL || "";
 const mainVslIosFallbackMp4Url = import.meta.env.VITE_VSL_IOS_FALLBACK_MP4_URL || "";
 const leadStrategistImage = "/lead-strategist.jpg";
